@@ -1,6 +1,6 @@
-# training
+# Flutter-Training
 
-A new Flutter project.
+Learning mobile app development using flutter.
 
 ## Getting Started
 
