@@ -12,8 +12,9 @@ class GridPage extends StatelessWidget {
       body: GridView.count(
         crossAxisCount: 3,
         padding: EdgeInsets.all(8.0),
-        children: List.generate(500, (index) {
+        children: List.generate(20, (index) {
           return Card(
+            shadowColor: Colors.lightGreen,
             margin: EdgeInsets.all(8.0),
             child: InkWell(
               child: Column(
@@ -27,6 +28,7 @@ class GridPage extends StatelessWidget {
               onTap: () {
                 print("Row $index");
               },
+              splashColor: Colors.lightGreen,
             ),
           );
         }),
