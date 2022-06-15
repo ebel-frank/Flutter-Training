@@ -13,8 +13,8 @@ class StackFavoriteWidget extends StatelessWidget {
           children: [
             Image.asset("assets/dawn.jpg"),
             const Positioned(
-              bottom: 0,
-              right: 0,
+              top: 0.0,
+              right: 0.0,
               child: FractionalTranslation(
                 translation: Offset(0.3, -0.3),
                 child: CircleAvatar(
@@ -29,16 +29,16 @@ class StackFavoriteWidget extends StatelessWidget {
               ),
             ),
             const Positioned(
-              bottom: 10,
-              right: 10,
+              bottom: 10.0,
+              right: 10.0,
               child: CircleAvatar(
-                radius: 48.0,
+                radius: 40.0,
                 backgroundImage: AssetImage('assets/siblings.jpg'),
               ),
             ),
             const Positioned(
               bottom: 16,
-              right: 16,
+              left: 16,
               child: Text(
                 "Bald Eagle",
                 style: TextStyle(

@@ -12,13 +12,13 @@ class StackWidget extends StatelessWidget {
           bottom: 10.0,
           left: 10.0,
           child: CircleAvatar(
-            radius: 48.0,
+            radius: 40.0,
             backgroundImage: AssetImage("assets/siblings.jpg"),
           ),
         ),
         const Positioned(
           bottom: 16.0,
-          left: 16.0,
+          right: 16.0,
           child: Text(
             "Lion",
             style: TextStyle(
