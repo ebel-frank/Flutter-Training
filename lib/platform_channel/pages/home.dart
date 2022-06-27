@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: ListTile(
           title: const Text("Device info:", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-          subtitle: Text(_deviceInfo, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+          subtitle: Text(_deviceInfo, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
           contentPadding: const EdgeInsets.all(16.0),
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
+import './pages/home.dart';
+
+void main() => runApp(const MaterialApp(
       home: Home(),
     ));
