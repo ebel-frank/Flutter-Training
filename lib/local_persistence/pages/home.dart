@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              // Build ListView Seperated
+              // Build ListView separated
               : ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
                     String _titleDate = DateFormat.yMMMd()
@@ -123,7 +123,7 @@ class _HomeState extends State<Home> {
                       secondaryBackground: Container(
                         color: Colors.red,
                         alignment: Alignment.centerRight,
-                        padding: const EdgeInsets.only(left: 16),
+                        padding: const EdgeInsets.only(right: 16),
                         child: const Icon(
                           Icons.delete,
                           color: Colors.white,
