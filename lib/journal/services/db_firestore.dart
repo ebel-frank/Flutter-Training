@@ -30,7 +30,7 @@ class DbFirestoreService implements DbApi {
 
   @override
   Future<Journal> getJournal(String documentID) async {
-
+    return Journal(documentID: documentID, date: '', mood: '', note: '', uid: '');
   }
 
   @override

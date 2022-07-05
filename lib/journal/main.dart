@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/home.dart';
+import 'pages/login.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -9,5 +9,5 @@ void main() => runApp(MaterialApp(
           primarySwatch: Colors.lightGreen,
           canvasColor: Colors.lightGreen.shade50,
           bottomAppBarColor: Colors.lightGreen),
-      home: const Home(),
+      home: const Login(),
     ));

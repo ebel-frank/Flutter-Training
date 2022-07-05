@@ -9,12 +9,12 @@ class JournalEditBlocProvider extends InheritedWidget {
   final Journal journal;
 
   const JournalEditBlocProvider(
-      {Key ? key, required Widget child, required this.journalEditBloc, required this.add, required this.journal})
+      {Key? key, required Widget child, required this.journalEditBloc, required this.add, required this.journal})
       : super(key: key, child: child);
 
   static JournalEditBlocProvider of(BuildContext context) {
     return (context.dependOnInheritedWidgetOfExactType(
-        aspect: JournalEditBlocProvider) as JournalEditBlocProvider;
+        aspect: JournalEditBlocProvider) as JournalEditBlocProvider);
     }
 
   @override
