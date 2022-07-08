@@ -27,10 +27,7 @@ class _LoginState extends State<Login> {
     } catch (e) {
       log(e.toString());
     }
-    final AuthenticationService _authenticationService =
-        AuthenticationService();
-    final AuthenticationBloc _authenticationBloc =
-        AuthenticationBloc(_authenticationService);
+    
     _loginBloc = LoginBloc(AuthenticationService());
   }
 

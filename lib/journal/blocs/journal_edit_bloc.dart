@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:training/journal/services/db_firestore_api.dart';
 
 import '../models/journal.dart';
