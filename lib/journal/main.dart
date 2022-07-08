@@ -1,15 +1,23 @@
+import 'dart:developer';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:training/journal/blocs/authentication_bloc_provider.dart';
 import 'package:training/journal/blocs/home_bloc.dart';
 import 'package:training/journal/blocs/home_bloc_provider.dart';
 import 'package:training/journal/services/db_firestore.dart';
 
+import '../firebase_options.dart';
 import 'blocs/authentication_bloc.dart';
 import 'pages/home.dart';
 import 'pages/login.dart';
 import 'services/authentication.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  log('Initialized default app');
+  runApp(const MyApp());
+}
 
 Widget _buildMaterialApp(Widget page) => MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -40,7 +48,11 @@ class MyApp extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
                 child: Container(
-                  color: Colors.lightGreen,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.lightGreen,
+                  ),
+                  padding: const EdgeInsets.all(10),
                   child: const CircularProgressIndicator(),
                 ),
               );
@@ -50,7 +62,7 @@ class MyApp extends StatelessWidget {
                   homeBloc:
                       HomeBloc(DbFirestoreService(), _authenticationService),
                   uid: snapshot.data);
-          } else {
+            } else {
               return _buildMaterialApp(const Login());
             }
           }),

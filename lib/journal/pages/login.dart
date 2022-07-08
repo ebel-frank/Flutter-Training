@@ -1,13 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:training/firebase_options.dart';
 
 import 'package:training/journal/blocs/login_bloc.dart';
 import 'package:training/journal/services/authentication.dart';
-
-import '../blocs/authentication_bloc.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -17,19 +11,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  late LoginBloc _loginBloc;
-
-  Future<void> _initializeFirebase() async {
-    try {
-      FirebaseApp app = await Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform);
-      log('Initialized default app $app');
-    } catch (e) {
-      log(e.toString());
-    }
-    
-    _loginBloc = LoginBloc(AuthenticationService());
-  }
+  final LoginBloc _loginBloc = LoginBloc(AuthenticationService());
 
   Column _buttonsLogin() {
     return Column(
@@ -103,60 +85,52 @@ class _LoginState extends State<Login> {
           preferredSize: Size.fromHeight(40),
         ),
       ),
-      body: FutureBuilder(
-        future: _initializeFirebase(),
-        builder: (context, snapshot) => (snapshot.connectionState !=
-                ConnectionState.done)
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : SingleChildScrollView(
-                padding: const EdgeInsets.only(
-                    left: 16, top: 32, right: 16, bottom: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    StreamBuilder(
-                      stream: _loginBloc.email,
-                      builder: (BuildContext context, AsyncSnapshot snapshot) =>
-                          TextField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                            labelText: 'Email Address',
-                            icon: const Icon(Icons.mail_outline),
-                            errorText: snapshot.error.toString()),
-                        onChanged: _loginBloc.emailChanged.add,
-                      ),
-                    ),
-                    StreamBuilder(
-                      stream: _loginBloc.password,
-                      builder: (BuildContext context, AsyncSnapshot snapshot) =>
-                          TextField(
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                            labelText: 'Password',
-                            icon: const Icon(Icons.security),
-                            errorText: snapshot.error.toString()),
-                        onChanged: _loginBloc.passwordChanged.add,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 48,
-                    ),
-                    StreamBuilder(
-                      initialData: 'Login',
-                      stream: _loginBloc.loginOrCreateButton,
-                      builder: ((BuildContext context, AsyncSnapshot snapshot) {
-                        if (snapshot.data == 'Login') {
-                          return _buttonsLogin();
-                        } else {
-                          return _buttonsCreateAccount();
-                        }
-                      }),
-                    )
-                  ],
-                ),
+      body: SingleChildScrollView(
+        padding:
+            const EdgeInsets.only(left: 16, top: 32, right: 16, bottom: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            StreamBuilder(
+              stream: _loginBloc.email,
+              builder: (BuildContext context, AsyncSnapshot snapshot) =>
+                  TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    labelText: 'Email Address',
+                    icon: const Icon(Icons.mail_outline),
+                    errorText: snapshot.error.toString()),
+                onChanged: _loginBloc.emailChanged.add,
               ),
+            ),
+            StreamBuilder(
+              stream: _loginBloc.password,
+              builder: (BuildContext context, AsyncSnapshot snapshot) =>
+                  TextField(
+                keyboardType: TextInputType.visiblePassword,
+                decoration: InputDecoration(
+                    labelText: 'Password',
+                    icon: const Icon(Icons.security),
+                    errorText: snapshot.error.toString()),
+                onChanged: _loginBloc.passwordChanged.add,
+              ),
+            ),
+            const SizedBox(
+              height: 48,
+            ),
+            StreamBuilder(
+              initialData: 'Login',
+              stream: _loginBloc.loginOrCreateButton,
+              builder: ((BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.data == 'Login') {
+                  return _buttonsLogin();
+                } else {
+                  return _buttonsCreateAccount();
+                }
+              }),
+            )
+          ],
+        ),
       ),
     );
   }
